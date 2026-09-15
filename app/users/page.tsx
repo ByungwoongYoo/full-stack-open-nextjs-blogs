@@ -8,11 +8,13 @@ const Users = async () => {
 
   return (
     <div>
-      <h2>Users</h2>
-      <ul>
+      <h2 className="text-2xl font-bold mb-4">Users</h2>
+      <ul className="space-y-2">
         {users.map((user) => (
           <li key={user.id}>
-            <Link href={`/users/${user.username}`}>{user.name}</Link>
+            <Link className="text-blue-700" href={`/users/${user.username}`}>
+              {user.name}
+            </Link>
           </li>
         ))}
       </ul>
