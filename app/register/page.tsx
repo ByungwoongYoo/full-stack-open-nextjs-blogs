@@ -11,6 +11,9 @@ export default function RegisterPage() {
   return (
     <div className="bg-white p-6 rounded shadow">
       <h2 className="text-2xl font-bold mb-4">Register</h2>
+      {state.errors?.form && (
+        <p className="text-red-600 mb-3">{state.errors.form}</p>
+      )}
       <form action={formAction} className="space-y-3">
         <div>
           <label className="block">
@@ -46,6 +49,11 @@ export default function RegisterPage() {
             Password
             <input className="border rounded w-full p-2" type="password" name="password" required />
           </label>
+          {state.errors?.password && (
+            <p data-testid="password-error" className="text-red-600 text-sm">
+              {state.errors.password}
+            </p>
+          )}
         </div>
         <div>
           <label className="block">

@@ -14,6 +14,7 @@ export type RegisterState = {
     name?: string
     password?: string
     passwordConfirm?: string
+    form?: string
   }
   values?: {
     username?: string
@@ -48,8 +49,17 @@ export const registerUser = async (
     return { errors, values: { username, name } }
   }
 
-  const passwordHash = await bcrypt.hash(password, 10)
-  await db.insert(users).values({ username, name, passwordHash })
+  try {
+    const passwordHash = await bcrypt.hash(password, 10)
+    await db.insert(users).values({ username, name, passwordHash })
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Registration failed"
+    return {
+      errors: { form: message },
+      values: { username, name },
+    }
+  }
+
   redirect("/login")
 }
 
