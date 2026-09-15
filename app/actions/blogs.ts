@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
+import { cookies } from "next/headers"
 import { auth } from "@/auth"
 import { addBlog, likeBlog } from "@/app/services/blogs"
 import { getCurrentUser } from "@/app/services/session"
@@ -52,10 +53,12 @@ export const createBlog = async (
   }
 
   await addBlog(title, author, url)
+  const jar = await cookies()
+  jar.set("notification", "Blog created", { path: "/", maxAge: 10 })
   revalidatePath("/blogs")
   revalidatePath("/users")
   revalidatePath("/me")
-  redirect("/blogs?created=1")
+  redirect("/blogs")
 }
 
 export const incrementLikes = async (formData: FormData) => {
