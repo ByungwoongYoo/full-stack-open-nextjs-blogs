@@ -29,15 +29,23 @@ const MePage = async () => {
         <h2 className="text-2xl font-bold mb-2">My page</h2>
         <p data-testid="user-name">Name: {user.name}</p>
         <p data-testid="user-username">Username: {user.username}</p>
-        <div className="mt-4">
+        <div data-testid="api-token-section" className="mt-4">
           <p>API token</p>
           {user.token ? (
-            <code className="block bg-slate-100 p-2 rounded break-all">{user.token}</code>
+            <div data-testid="token-display">
+              <code data-testid="api-token" className="block bg-slate-100 p-2 rounded break-all">
+                {user.token}
+              </code>
+            </div>
           ) : (
-            <p>No token has been generated yet.</p>
+            <p data-testid="no-token-message">No token has been generated yet.</p>
           )}
           <form action={generateToken} className="mt-2">
-            <button className="bg-slate-800 text-white px-3 py-1 rounded" type="submit">
+            <button
+              className="bg-slate-800 text-white px-3 py-1 rounded"
+              type="submit"
+              data-testid="generate-token-button"
+            >
               Generate token
             </button>
           </form>
