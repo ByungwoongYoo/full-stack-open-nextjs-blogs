@@ -2,6 +2,8 @@ import { notFound } from "next/navigation"
 import { getBlogById } from "../../services/blogs"
 import { incrementLikes } from "../../actions/blogs"
 
+export const dynamic = "force-dynamic"
+
 const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params
   const blog = await getBlogById(Number(id))

@@ -1,6 +1,8 @@
 import Link from "next/link"
 import { getBlogs } from "../services/blogs"
 
+export const dynamic = "force-dynamic"
+
 const Blogs = async ({
   searchParams,
 }: {
