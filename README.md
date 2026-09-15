@@ -2,6 +2,8 @@
 
 Full Stack Open: Next.js Chapters 2-3.
 
+Production: https://full-stack-open-nextjs-blogs.vercel.app
+
 ## Local setup
 
 1. Copy `DATABASE_URL` from Vercel Storage into `.env.local`
